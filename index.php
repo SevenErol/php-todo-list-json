@@ -21,6 +21,19 @@
 
         </ul>
 
+        <form action="server.php" method="post">
+
+            <div class="mb-3 d-flex mt-2">
+
+                <input type="text" name="task" id="task" class="form-control rounded-0" placeholder="Add a new task" aria-describedby="taskHelper" v-model='task' @keyup.enter="saveTasks">
+
+                <button type="submit" class="btn btn-primary rounded-0">
+                    Submit
+                </button>
+
+            </div>
+        </form>
+
     </div>
 
     <!-- axios CDN -->
