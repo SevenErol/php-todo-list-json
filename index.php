@@ -15,7 +15,11 @@
 
     <div id="app">
 
-        {{tasks}}
+        <ul>
+
+            <li v-for="task in tasks">{{ task }}</li>
+
+        </ul>
 
     </div>
 
