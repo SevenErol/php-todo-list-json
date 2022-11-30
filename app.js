@@ -3,7 +3,24 @@ const { createApp } = Vue;
 createApp({
     data() {
         return {
-            message: 'Hello Vue!'
+            API_URL: './server.php',
+            tasks: []
         }
+    },
+    methods: {
+        readToDoList(url) {
+            axios
+                .get(url)
+                .then(response => {
+                    console.log(response);
+                    this.tasks = response.data
+                })
+                .catch(err => {
+                    console.error(err.message);
+                })
+        }
+    },
+    mounted() {
+        this.readToDoList(this.API_URL)
     }
 }).mount('#app')
