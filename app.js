@@ -21,17 +21,41 @@ createApp({
                 })
         },
         saveTasks() {
+
+            if (this.task.replace(/\s/g, '').length > 0) {
+                const data = {
+                    title: this.task
+                }
+                axios
+                    .post('./add-task.php', data, {
+                        headers: { 'Content-Type': 'multipart/form-data' }
+                    })
+                    .then(response => {
+                        console.log(response);
+                        this.tasks = response.data
+                        this.task = ''
+
+                    })
+                    .catch(err => {
+                        console.error(err.message);
+                    })
+            }
+
+            this.task = ''
+
+        },
+        deleteTask(index) {
             const data = {
-                title: this.task
+                task_index: index
             }
             axios
-                .post('./add-task.php', data, {
+                .post('./delete-task.php', data, {
                     headers: { 'Content-Type': 'multipart/form-data' }
                 })
                 .then(response => {
                     console.log(response);
                     this.tasks = response.data
-                    this.task = ''
+                    this.deletetask = ''
 
                 })
                 .catch(err => {
