@@ -22,15 +22,16 @@ createApp({
         },
         saveTasks() {
             const data = {
-                task
+                title: this.task
             }
             axios
-                .post(this.url, data, {
+                .post('./add-task.php', data, {
                     headers: { 'Content-Type': 'multipart/form-data' }
                 })
                 .then(response => {
                     console.log(response);
                     this.tasks = response.data
+                    this.task = ''
 
                 })
                 .catch(err => {
